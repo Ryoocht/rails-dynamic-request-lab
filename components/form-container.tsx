@@ -1,15 +1,46 @@
 import type { NextPage } from "next";
+import { useMemo } from "react";
+import CSS, { Property } from "csstype";
 
-const FormContainer: NextPage = () => {
+type FormContainerType = {
+  houseLine?: string;
+  socialMediaLogo?: string;
+  socialMediaLogo1?: string;
+  socialMediaLogo2?: string;
+  socialMediaLogo3?: string;
+  socialMediaLogo4?: string;
+
+  /** Style props */
+  footerSectionOverflow?: Property.Overflow;
+};
+
+const FormContainer: NextPage<FormContainerType> = ({
+  houseLine,
+  socialMediaLogo,
+  socialMediaLogo1,
+  socialMediaLogo2,
+  socialMediaLogo3,
+  socialMediaLogo4,
+  footerSectionOverflow,
+}) => {
+  const footerSectionStyle: CSS.Properties = useMemo(() => {
+    return {
+      overflow: footerSectionOverflow,
+    };
+  }, [footerSectionOverflow]);
+
   return (
-    <div className="self-stretch flex flex-row p-[3.13rem] items-start justify-start md:self-stretch md:w-auto md:flex-row md:gap-[0rem] sm:flex-col">
+    <div
+      className="self-stretch flex flex-row p-[3.13rem] items-start justify-start md:self-stretch md:w-auto md:flex-row md:gap-[0rem] sm:flex-col"
+      style={footerSectionStyle}
+    >
       <footer className="flex-1 flex flex-row items-start justify-between text-left text-[1.5rem] text-gray-black font-body-regular-400 md:flex-col md:gap-[3.13rem] sm:flex-col sm:gap-[3.13rem] sm:flex-[unset] sm:self-stretch">
         <div className="w-[19.5rem] h-[18.75rem] flex flex-col items-start justify-start gap-[1.25rem] text-center text-primary-500 font-body-large-400">
           <div className="flex flex-row items-center justify-center gap-[0.5rem]">
             <img
               className="relative w-[2.75rem] h-[2.75rem]"
               alt=""
-              src="/houseline1.svg"
+              src={houseLine}
             />
             <div className="flex flex-col items-start justify-start">
               <div className="relative leading-[1.5rem] font-semibold">
@@ -38,35 +69,35 @@ const FormContainer: NextPage = () => {
               <img
                 className="relative w-[1.25rem] h-[1.35rem]"
                 alt=""
-                src="/social-media-logo.svg"
+                src={socialMediaLogo}
               />
             </div>
             <div className="rounded bg-primary-50 flex flex-col p-[0.88rem] items-center justify-center">
               <img
                 className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0"
                 alt=""
-                src="/social-media-logo1.svg"
+                src={socialMediaLogo1}
               />
             </div>
             <div className="rounded bg-primary-50 flex flex-col p-[0.88rem] items-center justify-center">
               <img
                 className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0"
                 alt=""
-                src="/social-media-logo2.svg"
+                src={socialMediaLogo2}
               />
             </div>
             <div className="rounded bg-primary-50 flex flex-col p-[0.88rem] items-center justify-center">
               <img
                 className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0"
                 alt=""
-                src="/social-media-logo3.svg"
+                src={socialMediaLogo3}
               />
             </div>
             <div className="rounded bg-primary-50 flex flex-col p-[0.88rem] items-center justify-center">
               <img
                 className="relative w-[1.25rem] h-[1.25rem] overflow-hidden shrink-0"
                 alt=""
-                src="/social-media-logo4.svg"
+                src={socialMediaLogo4}
               />
             </div>
           </div>
